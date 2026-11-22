@@ -8,7 +8,7 @@
   --gold-light: #e1bf68;
   --gold: #b7832b;
   --gold-dark: #79501c;
-  --lift-duration: 1500ms;
+  --lift-duration: 1900ms;
 }
 
 * {
@@ -96,6 +96,7 @@ button {
     0 2px 2px rgba(65, 39, 24, 0.15),
     0 20px 48px rgba(65, 39, 24, 0.2);
   filter: saturate(0.82) brightness(0.9) blur(1.4px);
+  transform-origin: 50% 52%;
   transform: scale(0.986) translateZ(0);
   transition:
     filter 1150ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -116,6 +117,16 @@ button {
       var(--gold-dark)
     ) 1;
   box-shadow: inset 0 0 0 1px rgba(255, 238, 172, 0.72);
+}
+
+.gold-edge::after {
+  position: absolute;
+  inset: calc(clamp(5px, 1.25vmin, 11px) * -1);
+  content: "";
+  opacity: 0;
+  background: linear-gradient(112deg, transparent 22%, rgba(255, 240, 174, 0.58) 46%, transparent 66%);
+  transform: translateX(-125%);
+  pointer-events: none;
 }
 
 .embossed-frame {
@@ -140,6 +151,9 @@ button {
   justify-content: center;
   color: var(--wine);
   text-align: center;
+  opacity: 0.92;
+  transform: translateY(5px) scale(0.996);
+  transform-origin: 50% 48%;
 }
 
 .card-content p {
@@ -292,9 +306,7 @@ button {
   z-index: 5;
   overflow: visible;
   transform-origin: 50% 43%;
-  transition:
-    transform var(--lift-duration) cubic-bezier(0.55, 0.08, 0.2, 1),
-    opacity 300ms ease var(--lift-duration);
+  transform-style: preserve-3d;
   will-change: transform, opacity;
 }
 
@@ -323,6 +335,8 @@ button {
   filter: drop-shadow(0 1px 1px rgba(91, 72, 56, 0.24));
   opacity: 0.96;
   backdrop-filter: blur(1.4px);
+  transform-style: preserve-3d;
+  will-change: transform, filter;
 }
 
 .flap-top {
@@ -346,6 +360,8 @@ button {
   inset: 0;
   z-index: 3;
   filter: drop-shadow(0 5px 5px rgba(81, 66, 53, 0.18));
+  transform-origin: 50% 48%;
+  will-change: transform, filter;
 }
 
 .lace-band,
@@ -374,6 +390,7 @@ button {
   top: 34.5%;
   width: 45%;
   height: 27%;
+  will-change: transform;
 }
 
 .loop-left {
@@ -394,6 +411,8 @@ button {
   top: 50%;
   width: 24%;
   height: 31%;
+  transform-origin: 50% 0;
+  will-change: transform;
 }
 
 .tail-left {
@@ -503,18 +522,63 @@ button {
 }
 
 body.is-open .wrapper {
-  opacity: 0;
-  transform: translate3d(-2%, -125%, 100px) rotateZ(-1.5deg) rotateX(3deg) scale(1.02);
+  animation: wrapper-lift var(--lift-duration) cubic-bezier(0.48, 0.08, 0.18, 1) both;
 }
 
 body.is-open .wrapper::after {
-  opacity: 1;
+  animation: wrapper-shadow 1300ms ease-out both;
+}
+
+body.is-open .lace-band {
+  animation: band-release 780ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+body.is-open .loop-left {
+  animation: loosen-left 850ms cubic-bezier(0.2, 0.9, 0.25, 1.18) both;
+}
+
+body.is-open .loop-right {
+  animation: loosen-right 920ms cubic-bezier(0.2, 0.9, 0.25, 1.16) 55ms both;
+}
+
+body.is-open .tail-left {
+  animation: tail-left-release 1050ms cubic-bezier(0.2, 0.8, 0.25, 1) 80ms both;
+}
+
+body.is-open .tail-right {
+  animation: tail-right-release 1120ms cubic-bezier(0.2, 0.8, 0.25, 1) 20ms both;
+}
+
+body.is-open .bow-knot {
+  animation: knot-release 720ms cubic-bezier(0.34, 1.5, 0.64, 1) both;
+}
+
+body.is-open .flap-top {
+  animation: breathe-top 980ms cubic-bezier(0.2, 0.8, 0.3, 1) 120ms both;
+}
+
+body.is-open .flap-left {
+  animation: breathe-left 1050ms cubic-bezier(0.2, 0.8, 0.3, 1) 190ms both;
+}
+
+body.is-open .flap-right {
+  animation: breathe-right 1120ms cubic-bezier(0.2, 0.8, 0.3, 1) 140ms both;
+}
+
+body.is-open .flap-bottom {
+  animation: breathe-bottom 1080ms cubic-bezier(0.2, 0.8, 0.3, 1) 240ms both;
 }
 
 body.is-open .invitation-card {
-  filter: saturate(1) brightness(1) blur(0);
-  transform: scale(1) translateZ(0);
-  box-shadow: 0 3px 3px rgba(65, 39, 24, 0.1), 0 28px 72px rgba(65, 39, 24, 0.25);
+  animation: card-reveal 1650ms cubic-bezier(0.22, 1, 0.36, 1) 240ms both;
+}
+
+body.is-open .card-content {
+  animation: content-settle 1250ms cubic-bezier(0.22, 1, 0.36, 1) 540ms both;
+}
+
+body.is-open .gold-edge::after {
+  animation: gold-sheen 1000ms ease 900ms both;
 }
 
 body.is-open .card-shadow {
@@ -523,7 +587,7 @@ body.is-open .card-shadow {
 }
 
 body.is-open .opening-glint {
-  animation: glint 850ms ease 750ms both;
+  animation: glint 920ms ease 980ms both;
 }
 
 body.is-open .interaction-hint {
@@ -535,7 +599,157 @@ body.is-open .reset-button {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
-  transition-delay: 1250ms;
+  transition-delay: 1520ms;
+}
+
+body.is-resetting .wrapper {
+  animation: wrapper-return 920ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+body.is-resetting .invitation-card {
+  animation: card-reset 820ms ease both;
+}
+
+body.is-resetting .card-content {
+  animation: content-reset 720ms ease both;
+}
+
+@keyframes wrapper-lift {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateZ(0) rotateX(0) scale(1);
+  }
+  9% {
+    transform: translate3d(0, 1.1%, 8px) rotateZ(0.12deg) rotateX(0.4deg) scale(0.997);
+  }
+  20% {
+    transform: translate3d(-0.2%, -2.3%, 24px) rotateZ(-0.22deg) rotateX(1.2deg) scale(1.004);
+  }
+  34% {
+    transform: translate3d(0.3%, -7%, 44px) rotateZ(0.2deg) rotateX(2deg) scale(1.009);
+  }
+  72% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-2.5%, -128%, 110px) rotateZ(-1.8deg) rotateX(3.5deg) scale(1.025);
+  }
+}
+
+@keyframes wrapper-return {
+  0% {
+    opacity: 0;
+    transform: translate3d(-2.5%, -128%, 110px) rotateZ(-1.8deg) rotateX(3.5deg) scale(1.025);
+  }
+  68% {
+    opacity: 1;
+    transform: translate3d(0.2%, 1.3%, 6px) rotateZ(0.16deg) scale(0.997);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateZ(0) rotateX(0) scale(1);
+  }
+}
+
+@keyframes wrapper-shadow {
+  0% { opacity: 0; transform: scale(0.94); }
+  22% { opacity: 0.5; transform: translateY(1%) scale(0.98); }
+  62% { opacity: 0.28; transform: translateY(6%) scale(1.02); }
+  100% { opacity: 0; transform: translateY(14%) scale(1.08); }
+}
+
+@keyframes band-release {
+  0% { transform: scaleX(1) translateY(0); }
+  42% { transform: scaleX(1.018) translateY(0.35%) skewX(-0.35deg); }
+  100% { transform: scaleX(0.992) translateY(-0.7%) skewX(0.2deg); }
+}
+
+@keyframes loosen-left {
+  0% { transform: rotate(5deg) scale(1); }
+  45% { transform: translate(-1.5%, 0.8%) rotate(8deg) scale(1.035, 0.98); }
+  100% { transform: translate(-2.4%, -0.3%) rotate(6.4deg) scale(1.02, 0.99); }
+}
+
+@keyframes loosen-right {
+  0% { transform: rotate(-5deg) scale(1); }
+  48% { transform: translate(1.7%, 0.5%) rotate(-8.4deg) scale(1.04, 0.975); }
+  100% { transform: translate(2.5%, -0.2%) rotate(-6.2deg) scale(1.018, 0.99); }
+}
+
+@keyframes tail-left-release {
+  0% { transform: rotate(9deg); }
+  38% { transform: translate(-1%, 1.2%) rotate(12deg); }
+  70% { transform: translate(-1.5%, -0.4%) rotate(7.5deg); }
+  100% { transform: translate(-1%, -0.8%) rotate(9.5deg); }
+}
+
+@keyframes tail-right-release {
+  0% { transform: rotate(-9deg); }
+  36% { transform: translate(1.2%, 1%) rotate(-12.5deg); }
+  72% { transform: translate(1.6%, -0.4%) rotate(-7.8deg); }
+  100% { transform: translate(1.1%, -0.8%) rotate(-9.4deg); }
+}
+
+@keyframes knot-release {
+  0% { transform: rotate(7deg) scale(1); }
+  50% { transform: translateY(2%) rotate(4deg) scale(1.09, 0.94); }
+  100% { transform: translateY(-2%) rotate(6deg) scale(1.025); }
+}
+
+@keyframes breathe-top {
+  to { transform: translateZ(9px) rotateX(-2.2deg) translateY(-0.7%); filter: brightness(1.025) drop-shadow(0 2px 2px rgba(91, 72, 56, 0.2)); }
+}
+
+@keyframes breathe-left {
+  to { transform: translateZ(6px) rotateY(1.6deg) translateX(-0.45%); filter: brightness(1.01) drop-shadow(1px 2px 2px rgba(91, 72, 56, 0.2)); }
+}
+
+@keyframes breathe-right {
+  to { transform: translateZ(7px) rotateY(-1.8deg) translateX(0.5%); filter: brightness(1.02) drop-shadow(-1px 2px 2px rgba(91, 72, 56, 0.2)); }
+}
+
+@keyframes breathe-bottom {
+  to { transform: translateZ(5px) rotateX(1.5deg) translateY(0.5%); filter: brightness(0.995) drop-shadow(0 -1px 2px rgba(91, 72, 56, 0.18)); }
+}
+
+@keyframes card-reveal {
+  0%, 18% {
+    filter: saturate(0.82) brightness(0.9) blur(1.4px);
+    transform: scale(0.986) translateY(0.3%) translateZ(0);
+    box-shadow: 0 2px 2px rgba(65, 39, 24, 0.15), 0 20px 48px rgba(65, 39, 24, 0.2);
+  }
+  72% {
+    filter: saturate(1.02) brightness(1.015) blur(0);
+    transform: scale(1.004) translateY(-0.15%) translateZ(0);
+  }
+  100% {
+    filter: saturate(1) brightness(1) blur(0);
+    transform: scale(1) translateY(0) translateZ(0);
+    box-shadow: 0 3px 3px rgba(65, 39, 24, 0.1), 0 28px 72px rgba(65, 39, 24, 0.25);
+  }
+}
+
+@keyframes card-reset {
+  from { filter: saturate(1) brightness(1) blur(0); transform: scale(1); }
+  to { filter: saturate(0.82) brightness(0.9) blur(1.4px); transform: scale(0.986); }
+}
+
+@keyframes content-settle {
+  0% { opacity: 0.9; transform: translateY(7px) scale(0.994); }
+  68% { opacity: 1; transform: translateY(-1px) scale(1.001); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes content-reset {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0.92; transform: translateY(5px) scale(0.996); }
+}
+
+@keyframes gold-sheen {
+  0% { opacity: 0; transform: translateX(-125%); }
+  32% { opacity: 0.48; }
+  100% { opacity: 0; transform: translateX(125%); }
 }
 
 @keyframes pulse {

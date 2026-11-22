@@ -3,9 +3,12 @@ const resetButton = document.querySelector(".reset-button");
 const statusMessage = document.querySelector(".status-message");
 
 let isOpen = false;
+let resetTimer;
 
 function openInvitation() {
   if (isOpen) return;
+  window.clearTimeout(resetTimer);
+  document.body.classList.remove("is-resetting");
   isOpen = true;
   document.body.classList.add("is-open");
   stage.setAttribute("aria-label", "Opened wedding invitation");
@@ -14,11 +17,16 @@ function openInvitation() {
 
 function wrapInvitation(event) {
   event.stopPropagation();
+  if (!isOpen) return;
   isOpen = false;
+  document.body.classList.add("is-resetting");
   document.body.classList.remove("is-open");
   stage.setAttribute("aria-label", "Wrapped wedding invitation. Tap or press Enter to open.");
   statusMessage.textContent = "The invitation is wrapped again.";
   stage.focus({ preventScroll: true });
+  resetTimer = window.setTimeout(() => {
+    document.body.classList.remove("is-resetting");
+  }, 980);
 }
 
 stage.addEventListener("click", openInvitation);
