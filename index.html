@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#eee6d9" />
+    <meta
+      name="description"
+      content="A pure HTML and CSS interactive wedding invitation for Negin and Hossein."
+    />
+    <title>Negin &amp; Hossein — Wedding Invitation</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="experience">
+      <h1 class="sr-only">Negin and Hossein wedding invitation</h1>
+
+      <button class="reset-button" type="button">Wrap again</button>
+
+      <section
+        class="invitation-stage"
+        role="button"
+        tabindex="0"
+        aria-label="Wrapped wedding invitation. Tap or press Enter to open."
+      >
+        <div class="card-shadow" aria-hidden="true"></div>
+
+        <article class="invitation-card" aria-label="Wedding invitation details">
+          <div class="gold-edge" aria-hidden="true"></div>
+          <div class="embossed-frame" aria-hidden="true"></div>
+
+          <div class="card-content">
+            <div class="fingerprint-heart" aria-hidden="true">♥</div>
+
+            <p class="persian invocation" dir="rtl" lang="fa">به نام خالق عشق و محبت</p>
+
+            <div class="ornament" aria-hidden="true">
+              <span></span><b>❦</b><span></span>
+            </div>
+
+            <p class="english-invite">INVITATION TO OUR WEDDING</p>
+            <p class="english-invite second-line">WITH LOVE AND JOU</p>
+
+            <p class="couple-names">Negin <i>&amp;</i> Hossein</p>
+
+            <div class="persian verse" dir="rtl" lang="fa">
+              <p>از صدای سخن عشق ندیدم خوشتر</p>
+              <p>یادگاری که در این گنبد دوار بماند</p>
+            </div>
+
+            <p class="family-names">Afralnerzhad <span>–</span> Fathi</p>
+
+            <div class="ornament compact" aria-hidden="true">
+              <span></span><b>❦</b><span></span>
+            </div>
+
+            <div class="persian schedule" dir="rtl" lang="fa">
+              <p>یکشنبه ۸ آذر ۱۴۰۵</p>
+              <p>از ساعت ۱۹ تا ۲۲</p>
+              <p>بصرف شیرینی و شام</p>
+            </div>
+
+            <div class="small-flourish" aria-hidden="true"><span></span><b>◇</b><span></span></div>
+
+            <div class="persian location" dir="rtl" lang="fa">
+              <p>حکیمیه، بلوار بهار، خیابان بهشت، خیابان ارکیده نهم</p>
+              <strong>تالار تشریفات رویال پالاس</strong>
+            </div>
+
+            <div class="small-flourish bottom-flourish" aria-hidden="true">
+              <span></span><b>◇</b><span></span>
+            </div>
+          </div>
+        </article>
+
+        <div class="wrapper" aria-hidden="true">
+          <div class="vellum-flaps">
+            <div class="vellum-flap flap-top"></div>
+            <div class="vellum-flap flap-left"></div>
+            <div class="vellum-flap flap-right"></div>
+            <div class="vellum-flap flap-bottom"></div>
+          </div>
+
+          <div class="lace-bow">
+            <div class="lace-band"></div>
+            <div class="bow-loop loop-left"></div>
+            <div class="bow-loop loop-right"></div>
+            <div class="bow-tail tail-left"></div>
+            <div class="bow-tail tail-right"></div>
+            <div class="bow-knot"></div>
+          </div>
+        </div>
+
+        <div class="opening-glint" aria-hidden="true"></div>
+      </section>
+
+      <p class="interaction-hint"><span></span>Tap or click to open</p>
+      <p class="status-message" aria-live="polite"></p>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
+
