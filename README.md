@@ -2,6 +2,8 @@
 
 This version contains no image files and uses no canvas. The invitation, embossed frame, gold edge, fingerprint-style heart, vellum folds, lace pattern, bow, and interaction are built with semantic HTML and CSS.
 
+The ceremonial wedding waltz is synthesized with the browser's Web Audio API, so the project remains self-contained with no external audio file. Accessible play/pause, mute, and volume controls are included.
+
 ## Preview locally
 
 ```bash

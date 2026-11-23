@@ -17,6 +17,33 @@
 
       <button class="reset-button" type="button">Wrap again</button>
 
+      <div class="music-player" role="group" aria-label="Wedding music controls">
+        <button class="music-toggle" type="button" aria-label="Play wedding music" aria-pressed="false">
+          <span class="play-icon" aria-hidden="true"></span>
+          <span class="pause-icon" aria-hidden="true"><i></i><i></i></span>
+        </button>
+
+        <div class="music-copy" aria-hidden="true">
+          <strong>Wedding waltz</strong>
+          <span class="music-status">Ready to play</span>
+        </div>
+
+        <div class="volume-control">
+          <button class="mute-toggle" type="button" aria-label="Mute wedding music" aria-pressed="false">
+            <span class="speaker-icon" aria-hidden="true"><i></i></span>
+          </button>
+          <input
+            class="volume-slider"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.42"
+            aria-label="Wedding music volume"
+          />
+        </div>
+      </div>
+
       <section
         class="invitation-stage"
         role="button"
