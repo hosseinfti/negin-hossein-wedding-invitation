@@ -1,22 +1,17 @@
-# Pure HTML/CSS Wedding Invitation
+# دعوت‌نامهٔ عروسی نگین و حسین
 
-This version contains no image files and uses no canvas. The invitation, embossed frame, gold edge, fingerprint-style heart, vellum folds, lace pattern, bow, and interaction are built with semantic HTML and CSS.
+به نام خالق عشق و محبت
 
-The ceremonial wedding waltz is synthesized with the browser's Web Audio API, so the project remains self-contained with no external audio file. Accessible play/pause, mute, and volume controls are included.
+دوستان و عزیزانمان،
 
-## Preview locally
+با شادی و افتخار، شما را به جشن عروسی‌مان دعوت می‌کنیم. حضور گرم شما شادی این شب را برایمان دوچندان می‌کند.
 
-```bash
-python3 -m http.server 4174
-```
+- **زمان:** یکشنبه ۸ آذر ۱۴۰۵، از ساعت ۱۹ تا ۲۲
+- **مکان:** تالار تشریفات رویال پالاس
+- **نشانی:** حکیمیه، بلوار بهار، خیابان بهشت، خیابان ارکیده نهم
+- **پذیرایی:** شیرینی و شام
 
-Open `http://127.0.0.1:4174/`.
+با مهر، نگین و حسین
 
-## Interaction
-
-- Tap or click anywhere to lift the wrapper.
-- Press Enter or Space while the invitation is focused.
-- Use “Wrap again” to reset.
-
-Deployment is intentionally not configured until the local version is approved.
+[مشاهدهٔ کارت دعوت](https://hosseinfti.github.io/negin-hossein-wedding-invitation/)
 
